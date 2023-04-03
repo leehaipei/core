@@ -1,0 +1,1 @@
+console.log("%c %c %c %ci@leehaipei.com","padding:3px 1px;background-color:rgb(14, 104, 175)","padding:3px 1px;background-color:rgb(5, 63, 118)","padding:3px 1px;background-color:rgb(224, 42, 36)","background-color:rgb(214, 214, 214);font-weight:bold;padding:3px;color:#000;");
