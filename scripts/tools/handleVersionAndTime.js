@@ -2,8 +2,6 @@ const fs = require('fs-extra');
 const chalk = require('react-dev-utils/chalk');
 const _packageJson = fs.readFileSync('./package.json')
 const _release_record = fs.readFileSync('./release-record.json')
-const args = process.argv.slice(2)
-const message = args[0]
 
 let packageJson = JSON.parse(_packageJson)
 let release_record = JSON.parse(_release_record)
@@ -16,10 +14,10 @@ function makeVersion() {
     return _v_arr.join(".")
 }
 
-module.exports = function handleVersionAndTime() {
+module.exports = function handleVersionAndTime(message) {
     return new Promise((resolve, reject) => {
 
-        if (args.length <= 0) {
+        if (!message) {
 
             console.log(chalk.red(`release parameter is not filled in.`));
             reject("please check ==>handleVersionAndTime.js")
@@ -41,18 +39,16 @@ module.exports = function handleVersionAndTime() {
                     console.log(chalk.red(`package.json update error`));
                 } else {
                     console.log(chalk.green(`package.json update success`));
+                    fs.writeFile("./release-record.json", JSON.stringify(release_record, null, "\t"), (err) => {
+                        if (err) {
+                            console.log(chalk.red(`release-record.json record error`));
+                        } else {
+                            resolve()
+                            console.log(chalk.green(`release-record.json record success`));
+                        }
+                    })
                 }
             })
-
-            fs.writeFile("./release-record.json", JSON.stringify(release_record, null, "\t"), (err) => {
-                if (err) {
-                    console.log(chalk.red(`release-record.json record error`));
-                } else {
-                    console.log(chalk.green(`release-record.json record success`));
-                }
-            })
-
-            resolve()
         }
     })
 }
