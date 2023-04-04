@@ -14,7 +14,7 @@ function makeCustomLog(isBuild) {
 
 module.exports = function handleCustomLog(isBuild = false) {
     return new Promise((resolve, reject) => {
-        fs.writeFile("./src/tools/console_log/index.js", makeCustomLog(isBuild), (err) => {
+        fs.writeFile("./core/tools/console_log/index.js", makeCustomLog(isBuild), (err) => {
             if (err) {
                 console.log(chalk.red(`custom Log ${isBuild ? "add" : "restore"} error`));
             }
