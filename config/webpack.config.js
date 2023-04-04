@@ -309,7 +309,7 @@ module.exports = function (webpackEnv) {
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
         // 用@代表tools的基础路径
-        '@': path.resolve('src/tools'),
+        '@': path.resolve('core/tools'),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
@@ -545,6 +545,12 @@ module.exports = function (webpackEnv) {
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
           ],
+        },
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /(node_modules|bower_components)/,
+          loader: 'babel-loader',
+          options: { presets: ['@babel/env','@babel/preset-react'] },
         },
       ].filter(Boolean),
     },
