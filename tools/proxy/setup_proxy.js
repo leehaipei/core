@@ -1,4 +1,4 @@
-import proxyRules from "../../../proxy_rules"
+import proxyRules from "../../../src/proxy_rules"
 
 const setupProxy = (url) => {
     const _url = url.split("/")[1]
