@@ -19,13 +19,14 @@ module.exports = function handleReleaseGit(msg) {
         shell.cd(rootPath);
         shell.exec(`git commit -am "${msg}"`);
         shell.exec(`git push`);
-        console.log(chalk.yellow(`handleReleaseGit commit & push`));
+        console.log(chalk.green(`handleReleaseGit commit & push`));
         resolve("commit & push")
       } else {
-        console.log(chalk.yellow(`handleReleaseGit No action`));
+        console.log(chalk.green(`handleReleaseGit No action`));
         resolve("ReleaseGit不做操作")
       }
     }).catch((error) => {
+      console.log(chalk.red(`handleReleaseGit error`));
       reject(error);
     });
   })
