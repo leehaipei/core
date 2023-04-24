@@ -13,19 +13,16 @@ const instance = axios.create({
 // instance.defaults.headers.post['Content-Type'] = 'application/json'
 
 /** 添加请求拦截器 **/
-// instance.interceptors.request.use(config => {
-//     var token = cookie.load('token')//获取本地存储的token
-//     // 判断cookie有没有存储token，有的话加入到请求头里
-//     if (token) {
-//         config.headers['token'] = token//在请求头中加入token
-//     }
-//     // 如果还需要在请求头内添加其他内容可以自己添加 [] 内为自定义的字段名 = 后的内容为字段名对应的内容
-//     // config.headers['api'] = api
-//     return config
-// }, error => {
-//     // 对请求错误做些什么
-//     return Promise.reject(error)
-// })
+instance.interceptors.request.use(config => {
+    const token = localStorage.getItem("token")
+    if (token) {
+        config.headers['token'] = token
+    }
+    return Promise.resolve(config)
+}, error => {
+    // 对请求错误做些什么
+    return Promise.reject(error)
+})
 
 /** 添加响应拦截器  **/
 instance.interceptors.response.use(response => {
