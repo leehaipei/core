@@ -20,21 +20,18 @@ const check_authority = () => {
                     if (res.code === 1) {
                         resolve({
                             code: 200,
-                            info: "token权限鉴定成功",
                             message: res.message
                         })
                     } else {
                         resolve({
                             code: 403,
-                            message: res.message,
-                            info: "token权限鉴定失败"
+                            message: res.message
                         })
                     }
                 }).catch(error => {
                     resolve({
                         code: 404,
-                        message: error,
-                        info: "token权限鉴定接口错误"
+                        message: error
                     })
                 })
 

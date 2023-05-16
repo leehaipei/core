@@ -66,21 +66,18 @@ class InputPass extends React.Component {
                 localStorage.setItem("token", res.token)
                 isOK = {
                     code: 200,
-                    message: res.message,
-                    info: "权限鉴定成功"
+                    message: res.message
                 }
             } else {
                 isOK = {
                     code: 403,
-                    message: res.message,
-                    info: "权限鉴定失败"
+                    message: res.message
                 }
             }
         }).catch(error => {
             isOK = {
                 code: 404,
-                message: error,
-                info: "权限鉴定接口错误"
+                message: error
             }
         })
     }
