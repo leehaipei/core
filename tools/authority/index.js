@@ -1,4 +1,4 @@
-import { use_authority } from '../../../src/project_config'
+import { use_authority, authority_way } from '../../../src/project_config'
 import _axios from '@/axios'
 import openInputPass from './components/input_passwords'
 import loading from '@/loading'
@@ -15,7 +15,7 @@ const check_authority = () => {
             const token = localStorage.getItem("token")
             if (token) {
                 loading.open()
-                post("/api/checkToken", { "_": token }).then(res => {
+                post(`/api${authority_way.checkToken}`, { "_": token }).then(res => {
                     loading.close()
                     if (res.code === 1) {
                         resolve({

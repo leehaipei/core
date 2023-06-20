@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss'
 
+import { authority_way } from '../../../../../src/project_config'
+
 let isOK = null
 
 window.openInputPass = function () { };
@@ -61,7 +63,7 @@ class InputPass extends React.Component {
         const userid = document.getElementById("username").value
         const userpass = document.getElementById("password").value
 
-        this.post("/api/login", { userid, userpass }).then(res => {
+        this.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
             if (res.code === 1) {
                 localStorage.setItem("token", res.token)
                 isOK = {
