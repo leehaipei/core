@@ -2,18 +2,17 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    color: #fff;
+    color: #a4a4a4;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    font-weight: bolder;
+    font-weight: 300;
     text-align: center;
     letter-spacing: 0.1rem;
-    box-sizing: border-box;
-    overflow: hidden;
+    background-color: #ededed;
 
     input {
         border: none;
@@ -27,31 +26,5 @@
         margin-top: 16px;
         cursor: pointer;
         font-size: 1.2rem;
-    }
-}
-
-
-.input_passwords::after {
-    content: '';
-    position: absolute;
-    top: calc(-1 * 100% - 100px);
-    right: calc(-1 * 100% - 150px);
-    bottom: calc(-1 * 100% - 200px);
-    left: calc(-1 * 100% - 250px);
-    background: conic-gradient(from 180deg at 50% 50%, #12001B -97.5deg, #000000 14.05deg, #040EFF 54.01deg, #8000FF 113.42deg, #00B6B6 185.62deg, #12001B 262.5deg, #000000 374.05deg);
-    filter: blur(60px) brightness(1.5);
-    z-index: -1;
-    animation: 30s move linear infinite;
-}
-
-
-
-@keyframes move {
-    from {
-        transform: rotate(180deg);
-    }
-
-    to {
-        transform: rotate(540deg);
     }
 }
