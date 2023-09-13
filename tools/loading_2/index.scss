@@ -1,0 +1,36 @@
+.kisses-spinner-border {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 33px;
+    text-shadow: 6px 2px 3px #ffcf00;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: flex-start;
+
+    >span {
+        display: inline-block;
+        transition: all;
+    }
+
+    :nth-child(1) {
+        animation: kisses-spinner-border .5s linear infinite;
+        animation-delay: .2s;
+    }
+
+    :nth-child(2) {
+        animation: kisses-spinner-border .5s linear infinite;
+        animation-delay: .3s;
+    }
+
+    :nth-child(3) {
+        animation: kisses-spinner-border .5s linear infinite;
+    }
+}
+
+
+@keyframes kisses-spinner-border {
+    to {
+        transform: scale(1.25);
+    }
+}
