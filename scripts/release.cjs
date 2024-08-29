@@ -2,8 +2,8 @@
 const args = process.argv.slice(2)
 const message = args[0]
 
-const handleVersionAndTime = require('./tools/handleVersionAndTime');
-const handleReleaseGit = require('./tools/handleReleaseGit');
+const handleVersionAndTime = require('./tools/handleVersionAndTime.cjs');
+const handleReleaseGit = require('./tools/handleReleaseGit.cjs');
 
 
 handleVersionAndTime(message)
@@ -11,7 +11,7 @@ handleVersionAndTime(message)
   .then((res) => {
   })
   .catch(err => {
-    console.log("release.js", err);
+    console.log("release.cjs", err);
   });
 
 
