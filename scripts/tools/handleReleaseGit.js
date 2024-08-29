@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const shell = require('shelljs');
 const rootPath = process.cwd();
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('chalk');
 const inquirer = require("inquirer");
 
 module.exports = function handleReleaseGit(msg) {

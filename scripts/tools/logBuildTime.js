@@ -1,4 +1,4 @@
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('chalk');
 const fs = require('fs-extra');
 
 

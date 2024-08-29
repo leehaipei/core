@@ -3,7 +3,7 @@ const shell = require('shelljs');
 const fs = require('fs-extra');
 const rootPath = process.cwd();
 const path = require('path');
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('chalk');
 const _packageJson = fs.readFileSync('./package.json')
 
 const packageJson = JSON.parse(_packageJson)

@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('chalk');
 const _packageJson = fs.readFileSync('./package.json')
 const _release_record = fs.readFileSync('./release-record.json')
 

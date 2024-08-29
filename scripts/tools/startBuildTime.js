@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('chalk');
 
 module.exports = function logBuildTime(start) {
   return new Promise((resolve, reject) => {
