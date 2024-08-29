@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 
 export default class RightClick {
     constructor(querySelector, content) {
@@ -8,7 +8,7 @@ export default class RightClick {
         const dom = document.querySelector(querySelector);
         this.dom = dom;
         this.content = content;
-
+        this.root = null;
         this.install();
     };
 
@@ -54,9 +54,11 @@ export default class RightClick {
         mask.style.left = pos.left;
 
         document.body.appendChild(mask);
-        ReactDOM.render(this.content,
-            document.getElementById(`right_click_mask_${this.querySelector}`)
-        );
+
+        const container = document.getElementById(`right_click_mask_${this.querySelector}`);
+        this.root = createRoot(container);
+        this.root.render(this.content);
+
         this.trigger = true;
     };
 
@@ -64,7 +66,7 @@ export default class RightClick {
         const mask = document.getElementById(`right_click_mask_${this.querySelector}`);
         if (!mask) return
 
-        ReactDOM.unmountComponentAtNode(document.getElementById(`right_click_mask_${this.querySelector}`));
+        this.root.unmount();
         mask.remove();
         this.trigger = false;
     };

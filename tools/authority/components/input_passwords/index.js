@@ -1,34 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.scss'
 
 import { authority_way } from '../../../../../src/project_config'
 
 let isOK = null
 
-window.openInputPass = function () { };
-
 let openInputPass = function () { }
 
 
 export default openInputPass = function (params) {
+    let root = null;
     if (!document.getElementById(`inputPass-container`)) {
         const div = document.createElement("div");
         div.id = "inputPass-container"
         document.getElementById(`root`).appendChild(div)
-        ReactDOM.render(
-            <InputPass />,
-            document.getElementById(`inputPass-container`)
-        );
+        const container = document.getElementById(`inputPass-container`);
+        root = createRoot(container);
+        root.render(<InputPass />);
     }
-
-    openInputPass(params);
 
     return new Promise((resolve, reject) => {
         const timeer = setInterval(() => {
             if (isOK) {
                 clearInterval(timeer)
-                ReactDOM.unmountComponentAtNode(document.getElementById(`inputPass-container`));
+                root.unmount();
                 document.getElementById(`inputPass-container`).remove();
                 resolve(isOK)
             }
@@ -45,8 +41,6 @@ class InputPass extends React.Component {
 
 
     componentDidMount() {
-        // require('./index.scss')
-        openInputPass = params => { };
         document.body.addEventListener('keydown', this.handleKey)
     }
 

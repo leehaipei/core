@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 
 import './index.scss'
 
 const loading = {
+    root:null,
     open: function (container_id) {
 
         let _box, loading_container = document.createElement("div");
@@ -32,22 +33,21 @@ const loading = {
         }
 
         document.body.appendChild(loading_container);
-        ReactDOM.render(
-            <div className="kisses-spinner-border" role="status">
-                <span>.</span>
-                <span>.</span>
-                <span>.</span>
-            </div>,
-            document.getElementById(loading_container.id)
-        );
 
+        const container = document.getElementById(loading_container.id);
+        this.root = createRoot(container);
+        this.root.render( <div className="kisses-spinner-border" role="status">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+        </div>);
     },
     close: function (container_id = "body") {
 
         const box = document.getElementById(`loading_container_${container_id}`);
         if (!box) return console.error(`loading.close方法未找到id为${container_id}生成的容器`);
 
-        ReactDOM.unmountComponentAtNode(document.getElementById(`loading_container_${container_id}`));
+        this.root.unmount();
         const loading_container = document.getElementById(`loading_container_${container_id}`);
         loading_container.remove();
     }
