@@ -6,11 +6,6 @@ export default class NoAuthority extends React.Component {
         this.state = {}
     }
 
-
-    componentDidMount() {
-        // require('./index.scss')
-    }
-
     reset() {
         localStorage.clear()
         window.location.reload()
@@ -20,7 +15,7 @@ export default class NoAuthority extends React.Component {
         return (
             <div className='no_authority'>
                 {this.props.info}
-                <p className='reset' onClick={this.reset}>reset</p>
+                <div className='reset' onClick={this.reset}>reset</div>
             </div>
         );
     }
