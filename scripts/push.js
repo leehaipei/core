@@ -20,7 +20,8 @@ axios.post(push_host, {
   "device_key": device_key,
   "body": `post:${beijingTimeString}\nmessage:${release_record[0].message}\nbuilt:${buildtime.use}\nrelease:${release_record[0].time}`,
   "title": `${packageJson.name} version:${packageJson.version}`,
-  "icon": "https://static.leehaipei.com/images/github.png"
+  "icon": "https://static.leehaipei.com/images/github.png",
+  "group": 'ReleaseNotice'
 }).then(res => {
   if (res.data.code === 200) {
     console.log(`push success`);
