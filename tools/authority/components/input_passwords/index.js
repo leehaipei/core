@@ -56,10 +56,10 @@ class InputPass extends React.Component {
 
     // 此处创建函数用箭头函数可以使得addEventListener和removeEventListener使用的是同一个函数，使用时bind或箭头函数或无名函数都会导致移除监听时调用的不是同一个函数，产生报错
     handleKey = (e) => {
-        if (e.key === "Enter") { this.check() }
+        if (e.key === "Enter") { this.login() }
     }
 
-    check() {
+    login() {
         const userid = document.getElementById("username").value
         const userpass = document.getElementById("password").value
 
@@ -104,8 +104,8 @@ class InputPass extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                <div className='check' onClick={this.check.bind(this)}>
-                    check
+                <div className='login' onClick={this.login.bind(this)}>
+                    login
                 </div>
             </div>
         );
