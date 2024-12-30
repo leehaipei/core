@@ -20,7 +20,7 @@ let beijingTimeString = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Sha
 
 axios.post(push_host, {
   "device_key": device_key,
-  "body": `post:${beijingTimeString}\nmessage:${release_record[0].message}\nbuilt:${buildtime.use}\nrelease:${release_record[0].time}\naction run:${moment(action_start).diff(moment(), 'seconds', true)}`,
+  "body": `post:${beijingTimeString}\nmessage:${release_record[0].message}\nbuilt:${buildtime.use}\naction run:${moment().diff(moment(action_start), 'seconds', true)}s\nrelease:${release_record[0].time}`,
   "title": `${packageJson.name} version:${packageJson.version}`,
   "icon": "https://static.leehaipei.com/images/github.png",
   "group": 'ReleaseNotice'
