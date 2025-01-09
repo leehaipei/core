@@ -5,6 +5,7 @@ const _packageJson = fs.readFileSync('./package.json')
 const _release_record = fs.readFileSync('./release-record.json')
 const args = process.argv.slice(2)
 const _buildtime = fs.readFileSync('./buildtime.json')
+const momentBeijing = require('../tools/momentBeijing')
 
 
 let packageJson = JSON.parse(_packageJson)
@@ -15,8 +16,7 @@ const device_key = args[0]
 const push_host = args[1]
 const action_start = args[2]
 
-// 创建一个新的 Date 对象，并使用 toLocaleString() 方法将其转换为北京时间字符串
-let beijingTimeString = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false });
+let beijingTimeString = momentBeijing().format('YYYY-MM-DD HH:mm:ss');
 
 axios.post(push_host, {
   "device_key": device_key,

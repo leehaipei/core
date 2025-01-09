@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const chalk = require('react-dev-utils/chalk');
 const _packageJson = fs.readFileSync('./package.json')
 const _release_record = fs.readFileSync('./release-record.json')
+const momentBeijing = require('../../tools/momentBeijing')
 
 let packageJson = JSON.parse(_packageJson)
 let release_record = JSON.parse(_release_record)
@@ -25,7 +26,7 @@ module.exports = function handleVersionAndTime(message) {
         } else {
 
             packageJson["version"] = makeVersion()
-            packageJson["last-release-time"] = new Date().toLocaleString('zh', { hour12: false })
+            packageJson["last-release-time"] = momentBeijing().format("YYYY-MM-DD HH:mm:ss")
             packageJson["release-message"] = message
 
             release_record.unshift({

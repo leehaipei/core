@@ -1,11 +1,12 @@
 const fs = require('fs-extra');
 const chalk = require('react-dev-utils/chalk');
 const _packageJson = fs.readFileSync('./package.json')
+const momentBeijing = require('../../tools/momentBeijing')
 
 const packageJson = JSON.parse(_packageJson)
 
 function makeCustomLog(isBuild) {
-    const nowStr = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false });
+    const nowStr = momentBeijing().format('YYYY-MM-DD HH:mm:ss')
     if (isBuild) {
         return `console.log("%cversion%c${packageJson.version}", "background-color:#20232a;color:#61dafb;font-weight:bold;padding:0px 3px;border:1px solid #20232a", "color:#20232a;background-color:#61dafb;font-weight:bold;padding:1px 3px");
         console.log("%crelease%c${packageJson['last-release-time']}", "background-color:#20232a;color:#61dafb;font-weight:bold;padding:0px 3px;border:1px solid #20232a", "color:#20232a;background-color:#61dafb;font-weight:bold;padding:1px 3px");
