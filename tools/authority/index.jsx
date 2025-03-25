@@ -7,7 +7,7 @@ import loading from '@/loading'
 const post = new _axios().post
 
 
-const check_authority = () => {
+const check_authority = (config) => {
 
     return new Promise((resolve, reject) => {
         // 配置要求权限
@@ -15,29 +15,34 @@ const check_authority = () => {
             const token = localStorage.getItem("token")
             if (token) {
                 loading.open()
-                post(`/api${authority_way.checkToken}`, { "_": token }).then(res => {
-                    loading.close()
-                    if (res.code === 1) {
+                post(`/api${authority_way.checkToken}`, { "_": token, backUser: config?.backUser })
+                    .then(res => {
+                        loading.close()
+                        if (res.code === 1) {
+                            let obj = {
+                                code: 200,
+                                message: res.message
+                            }
+                            if (config?.backUser) {
+                                obj.userid = res.userid
+                            }
+                            resolve(obj)
+                        } else {
+                            resolve({
+                                code: 403,
+                                message: res.message
+                            })
+                        }
+                    }).catch(error => {
                         resolve({
-                            code: 200,
-                            message: res.message
+                            code: 404,
+                            message: error
                         })
-                    } else {
-                        resolve({
-                            code: 403,
-                            message: res.message
-                        })
-                    }
-                }).catch(error => {
-                    resolve({
-                        code: 404,
-                        message: error
                     })
-                })
 
             } else {
-                openInputPass().then(checkRes => {
-                    resolve({ ...checkRes })
+                openInputPass(config).then(checkRes => {
+                    resolve(checkRes)
                 })
             }
         } else {

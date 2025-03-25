@@ -9,15 +9,15 @@ let isOK = null
 let openInputPass = function () { }
 
 
-export default openInputPass = function (params) {
+export default openInputPass = function (config) {
     let root = null;
     if (!document.getElementById(`inputPass-container`)) {
         const div = document.createElement("div");
         div.id = "inputPass-container"
-        document.getElementById(`root`).appendChild(div)
+        document.getElementById(`app`).appendChild(div)
         const container = document.getElementById(`inputPass-container`);
         root = createRoot(container);
-        root.render(<InputPass />);
+        root.render(<InputPass config={config} />);
     }
 
     return new Promise((resolve, reject) => {
@@ -56,11 +56,13 @@ class InputPass extends React.Component {
     check() {
         const userid = document.getElementById("username").value
         const userpass = document.getElementById("password").value
+        const { backUser } = this.props.config
 
         this.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
             if (res.code === 1) {
                 localStorage.setItem("token", res.token)
                 isOK = {
+                    userid: backUser ? userid : undefined,
                     code: 200,
                     message: res.message
                 }
