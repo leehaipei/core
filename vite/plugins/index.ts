@@ -7,8 +7,8 @@ import customBuiltTime from './custom-built-time'
 
 export default function processPlugins({ mode, command }): PluginOption[] {
 
-    // let plugins = [checkCore()];
-    let plugins = [];
+    let plugins = [checkCore()];
+    // let plugins = [];
 
     if (command === 'serve') {
     }
