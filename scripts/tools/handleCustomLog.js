@@ -21,8 +21,8 @@ module.exports = function handleCustomLog(isBuild = false) {
 
         let coreBeijingTime = false;
         if (isBuild) {
-            const commits = await axios.get('https://api.github.com/repos/leehaipei/core/commits')
-            const coreTime = commits?.data?.[0]?.commit?.author?.date;
+            const commits = await axios.get('https://api.github.com/repos/leehaipei/core/branches/master')
+            const coreTime = commits?.data?.commit?.commit?.author?.date;
             coreBeijingTime = moment.utc(coreTime).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')
         }
 
