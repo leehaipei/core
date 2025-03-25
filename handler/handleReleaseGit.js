@@ -10,7 +10,8 @@ export default function handleReleaseGit(message) {
     const answer = await confirm({ message: '是否提交并推送代码' });
     if (answer) {
       shell.cd(rootPath);
-      shell.exec(`git commit -am "${message}"`);
+      shell.exec(`git add .`);
+      shell.exec(`git commit -m "${message}"`);
       shell.exec(`git push`);
       console.log(chalk.green("commit & push"));
       resolve("commit & push")
