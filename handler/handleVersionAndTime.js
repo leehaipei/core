@@ -40,6 +40,14 @@ export default async function handleVersionAndTime(message) {
         ],
     });
 
+    if (visionAnswer === 1) {
+        currentVisionArry[2] = 0
+    }
+    if (visionAnswer === 0) {
+        currentVisionArry[2] = 0
+        currentVisionArry[1] = 0
+    }
+
     const typeAnswer = await select({
         message: '选择版本号更新方式',
         choices: [
