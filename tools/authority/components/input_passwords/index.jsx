@@ -105,7 +105,7 @@ class InputPass extends React.Component {
                 </button>
 
                 <p className='forgot'>
-                    <a href="https://id.leehaipei.com/" target="_blank">忘记密码?</a>
+                    <a href="https://id.leehaipei.com/" target="_blank">创建账户/忘记密码</a>
                 </p>
             </div>
         );
