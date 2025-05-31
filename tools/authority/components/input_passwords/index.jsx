@@ -103,6 +103,10 @@ class InputPass extends React.Component {
                 <button className='check' onClick={this.check.bind(this)}>
                     登录
                 </button>
+
+                <p className='forgot'>
+                    <a href="https://id.leehaipei.com/" target="_blank">忘记密码?</a>
+                </p>
             </div>
         );
     }

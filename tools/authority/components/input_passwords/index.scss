@@ -22,10 +22,16 @@
         border: 2px solid #E4E4E7;
     }
 
-
-
     .check {
         margin-top: 16px;
         font-size: 1.2rem;
+    }
+
+    .forgot {
+        font-size: 0.88rem;
+        position: fixed;
+        bottom: 32px;
+        color: #A1A1AA;
+        font-style: italic;
     }
 }
