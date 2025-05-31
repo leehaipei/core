@@ -2,29 +2,30 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    color: #a4a4a4;
+    color: #A1A1AA;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    font-weight: 300;
+    // font-weight: 300;
     text-align: center;
     letter-spacing: 0.1rem;
     background-color: #ededed;
 
     input {
-        border: none;
-        height: 1.6rem;
-        border-radius: 3px;
-        padding: 0 6px;
+        height: 36px;
+        border-radius: 12px;
+        padding: 8px 12px;
         box-sizing: border-box;
+        border: 2px solid #E4E4E7;
     }
+
+
 
     .check {
         margin-top: 16px;
-        cursor: pointer;
         font-size: 1.2rem;
     }
 }

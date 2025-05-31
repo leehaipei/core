@@ -84,25 +84,25 @@ class InputPass extends React.Component {
     render() {
         return (
             <div className='input_passwords'>
-                <table>
+                <table style={{ borderCollapse: 'separate', borderSpacing: '7px 14px' }}>
                     <tbody>
                         <tr>
-                            <td>username:</td>
+                            <td>用户名:</td>
                             <td>
                                 <input id='username' type={"text"} />
                             </td>
                         </tr>
                         <tr>
-                            <td>password:</td>
+                            <td>密码:</td>
                             <td>
                                 <input id='password' type={"password"} />
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div className='check' onClick={this.check.bind(this)}>
-                    check
-                </div>
+                <button className='check' onClick={this.check.bind(this)}>
+                    登录
+                </button>
             </div>
         );
     }
