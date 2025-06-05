@@ -84,30 +84,56 @@ class InputPass extends React.Component {
     render() {
         return (
             <div className='input_passwords'>
-                <table style={{ borderCollapse: 'separate', borderSpacing: '7px 14px' }}>
-                    <tbody>
-                        <tr>
-                            <td>用户名:</td>
-                            <td>
-                                <input id='username' type={"text"} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>密码:</td>
-                            <td>
-                                <input id='password' type={"password"} />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <div className='input_passwords_content'>
+
+                    <div className='input_passwords_wrapper'>
+                        <label htmlFor="username">用户名</label>
+                        <input id='username' type={"text"} />
+                    </div>
+
+                    <div className='input_passwords_wrapper'>
+                        <label htmlFor="password">密码</label>
+                        <input id='password' type={"password"} />
+                    </div>
+
+                </div>
+
                 <button className='check' onClick={this.check.bind(this)}>
                     登录
                 </button>
 
                 <p className='forgot'>
-                    <a href="https://id.leehaipei.com/" target="_blank">创建账户/忘记密码</a>
+                    <a href="https://id.leehaipei.com/" target="_blank">创建账户&nbsp;|&nbsp;忘记密码</a>
                 </p>
             </div>
         );
     }
 }
+
+
+// const daaaa = <div className='input_passwords'>
+//     <table style={{ borderCollapse: 'separate', borderSpacing: '7px 14px' }}>
+//         <tbody>
+//             <tr>
+//                 <td>用户名:</td>
+//                 <td>
+//                     <input id='username' type={"text"} />
+//                 </td>
+//             </tr>
+//             <tr>
+//                 <td>密码:</td>
+//                 <td>
+//                     <input id='password' type={"password"} />
+//                 </td>
+//             </tr>
+//         </tbody>
+//     </table>
+//     <button className='check' onClick={this.check.bind(this)}>
+//         登录
+//     </button>
+
+//     <p className='forgot'>
+//         <a href="https://id.leehaipei.com/" target="_blank">创建账户/忘记密码</a>
+//     </p>
+// </div>

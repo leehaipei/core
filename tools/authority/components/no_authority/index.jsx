@@ -14,8 +14,8 @@ export default class NoAuthority extends React.Component {
     render() {
         return (
             <div className='no_authority'>
-                {this.props.info}
-                <p className='reset' onClick={this.reset}>重置</p>
+                <div className='no_authority_info'>{this.props.info}</div>
+                <button className='no_authority_reset' onClick={this.reset}>重置</button>
             </div>
         );
     }
