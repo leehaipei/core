@@ -58,6 +58,10 @@ class InputPass extends React.Component {
         const userpass = document.getElementById("password").value
         const backUser = this.props?.config?.backUser;
 
+        if (!userid || !userpass) {
+            return;
+        }
+
         this.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
             if (res.code === 1) {
                 localStorage.setItem("token", res.token)
