@@ -3,6 +3,13 @@
     height: 100%;
     width: 100%;
 
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        background-color: #fff !important;
+    }
+
     .input_passwords_content {
         position: absolute;
         top: 35%;
@@ -31,7 +38,6 @@
             }
 
             input {
-                background-color: #fff !important;
                 font-size: .99rem;
                 color: #18181B;
                 border: none;
