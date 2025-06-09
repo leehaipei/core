@@ -89,5 +89,10 @@
         bottom: 32px;
         left: 50%;
         transform: translate(-50%, -50%);
+
+        a {
+            text-decoration: none;
+            color: #A1A1AA;
+        }
     }
 }
