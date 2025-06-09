@@ -86,6 +86,7 @@ class InputPass extends React.Component {
 
 
     render() {
+        const hideID = this.props?.config?.hideID;
         return (
             <div className='input_passwords'>
 
@@ -107,9 +108,9 @@ class InputPass extends React.Component {
                     登录
                 </button>
 
-                <p className='forgot'>
+                {!hideID && <p className='forgot'>
                     <a href="https://id.leehaipei.com/" target="_blank">创建账户&nbsp;|&nbsp;忘记密码</a>
-                </p>
+                </p>}
             </div>
         );
     }
