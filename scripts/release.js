@@ -1,18 +1,10 @@
-import chalk from 'chalk';
-
+import handleReleaseMessage from '../handler/handleReleaseMessage.js';
 import handleVersionAndTime from '../handler/handleVersionAndTime.js';
 import handleReleaseGit from '../handler/handleReleaseGit.js';
 
-
-const args = process.argv.slice(2);
-const message = args[0];
-
 async function main() {
-  if (!message) {
-    console.log(chalk.red(`release message is not filled in.`));
-    return
-  }
 
+  const message = await handleReleaseMessage();
   await handleVersionAndTime(message);
   await handleReleaseGit(message);
 
