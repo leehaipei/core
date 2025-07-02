@@ -4,7 +4,7 @@
 
 ## 一、问题描述
 
-react单页应用使用了BrowserRouter 路由（HTML5 history API ），项目打包后，使用apache服务器访问https://wt.leehaipei.com/Calendar，能够正常显示，但是刷新后页面404了。
+react单页应用使用了BrowserRouter 路由（HTML5 history API ），项目打包后，使用apache服务器访问https://xx.leehaipei.com/xx
 
 
 

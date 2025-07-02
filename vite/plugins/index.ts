@@ -3,6 +3,7 @@ import type { PluginOption } from 'vite'
 import checkCore from './check-core'
 import customLog from './custom-log'
 import customBuiltTime from './custom-built-time'
+import customCDN from './custom-cdn'
 
 
 export default function processPlugins({ mode, command }): PluginOption[] {
@@ -14,7 +15,7 @@ export default function processPlugins({ mode, command }): PluginOption[] {
     }
 
     if (command === 'build') {
-        plugins = plugins.concat([customLog(), customBuiltTime()])
+        plugins = plugins.concat([customCDN(), customLog(), customBuiltTime()])
     }
 
     return plugins;
