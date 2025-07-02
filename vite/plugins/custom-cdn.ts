@@ -18,7 +18,6 @@ export default function customCDN(): PluginOption {
   // react react-dom react-router antd antd-mobile axios moment dayjs heroui
   const cdnMap = {
     axios: "axios",
-    antd: "antd",
     moment: "moment",
     dayjs: "dayjs",
   };
