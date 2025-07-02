@@ -34,7 +34,7 @@ export default function customCDN(): PluginOption {
 
 // 启用CDN
 // 1. 在package.json中添加useCDN，设置为true
-// 2. 安装 vite-plugin-cdn-import 插件
+// 2. 安装 vite-plugin-cdn-import 插件 npm i vite-plugin-cdn-import -D
 
 // 常规modules中自定义配置
 // {
