@@ -13,22 +13,47 @@ export default function customCDN(): PluginOption {
 
   const dependencies = packageJson.dependencies;
 
-  let modules = ["react", "react-dom"];
+  interface Module {
+    name: string;
+    var: string;
+    path: string | string[];
+    /** Alias ​​of name, for example "react-dom/client" is an alias of "react-dom" */
+    alias?: string[];
+    css?: string | string[];
+    prodUrl?: string;
+  }
+
+  let modules: Module[] = [];
 
   // react react-dom react-router antd antd-mobile axios moment dayjs heroui
   const cdnMap = {
-    axios: "axios",
-    moment: "moment",
-    dayjs: "dayjs",
+    axios: {
+      name: "axios",
+      var: "axios",
+      path: `axios.min.js`,
+    },
+    moment: {
+      name: "moment",
+      var: "moment",
+      path: `https://cdnjs.cloudflare.com/ajax/libs/moment.js/{version}/moment.min.js`,
+    },
+    dayjs: {
+      name: "dayjs",
+      var: "dayjs",
+      path: [`dayjs.min.js`, `locale/zh-cn.min.js`],
+    },
   };
 
   for (const key in dependencies) {
-    if (key === cdnMap?.[key]) {
+    if (cdnMap?.[key]) {
       modules.push(cdnMap[key]);
     }
   }
 
-  return cdn({ modules });
+  return cdn({
+    modules,
+    prodUrl: "https://cdnjs.cloudflare.com/ajax/libs/{name}/{version}/{path}", // https://cdnjs.com
+  });
 }
 
 // 启用CDN
