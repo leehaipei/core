@@ -22,15 +22,15 @@ export default function checkCorePlugin(): PluginOption {
       // 仅且首次执行
       if (!checkCompleted) {
         try {
+          // 判断本地的仓库是否最新，不是最新才进行更新
           const gitInfo = await axios.get(
             `https://api.github.com/repos/leehaipei/core/branches/${coreBranch}`
           );
           if (gitInfo?.data?.commit?.sha) {
-            const remoteSHA: string = gitInfo.data.commit.sha;
-
+            const remoteSHA: string = gitInfo.data.commit.sha.trim();
             shell.cd(rootPath + "/core");
             const result = shell.exec(`git rev-parse ${coreBranch}`);
-            const currentSHA: string = result.stdout;
+            const currentSHA: string = result.stdout.trim();
             shell.cd(rootPath);
             if (remoteSHA === currentSHA) {
               console.log(
