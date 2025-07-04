@@ -9,7 +9,6 @@ import customCDN from './custom-cdn'
 export default function processPlugins({ mode, command }): PluginOption[] {
 
     let plugins = [checkCore()];
-    // let plugins = [];
 
     if (command === 'serve') {
     }
