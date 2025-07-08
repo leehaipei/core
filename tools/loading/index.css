@@ -12,6 +12,7 @@
     border-radius: 50%;
     -webkit-animation: spinner-border 1.2s linear infinite;
     animation: spinner-border 1.2s linear infinite;
+    z-index: 8848;
 }
 
 @keyframes spinner-border {

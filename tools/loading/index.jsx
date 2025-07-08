@@ -1,6 +1,3 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-
 import './index.css'
 
 const loading = {
@@ -8,6 +5,7 @@ const loading = {
     open: function (container_id) {
 
         let _box, loading_container = document.createElement("div");
+        loading_container.className = "spinner-border";
 
         if (!container_id) {
 
@@ -34,16 +32,11 @@ const loading = {
 
         document.body.appendChild(loading_container);
 
-        const container = document.getElementById(loading_container.id);
-        this.root = createRoot(container);
-        this.root.render(<div className="spinner-border" role="status"></div>);
-
     },
     close: function (container_id = "body") {
 
         const box = document.getElementById(`loading_container_${container_id}`);
         if (!box) return console.error(`loading.close方法未找到id为${container_id}生成的容器`);
-        this.root.unmount();
         const loading_container = document.getElementById(`loading_container_${container_id}`);
         loading_container.remove();
     }
