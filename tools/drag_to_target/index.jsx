@@ -69,10 +69,9 @@ export default function DragToTarget({ elementRef, targetRef, onMoveStart, onMov
                 onMoveOk?.();
             } else {
                 onMoveCancel?.();
+                // Reset transform
+                element.style.transform = '';
             }
-
-            // Reset transform
-            // element.style.transform = '';
         };
 
         element.addEventListener('mousedown', onStart);
