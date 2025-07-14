@@ -72,7 +72,7 @@ export default function DragToTarget({ elementRef, targetRef, onMoveStart, onMov
             }
 
             // Reset transform
-            element.style.transform = '';
+            // element.style.transform = '';
         };
 
         element.addEventListener('mousedown', onStart);
