@@ -1,5 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
+/**
+ * DragToTarget组件
+ * @param {Object} props - 组件属性
+ * @param {Object} props.elementRef - 可拖动元素的ref对象
+ * @param {Object} props.targetRef - 目标元素的ref对象
+ * @param {Function} props.onMoveStart - 拖动开始时调用的回调函数
+ * @param {Function} props.onMoveOk - 拖动进入目标元素松开时调用的回调函数
+ * @param {Function} props.onMoveCancel - 拖动松开时间未在目标元素调用的回调函数
+ * @returns {null} - 渲染的组件元素
+ */
+
 export default function DragToTarget({ elementRef, targetRef, onMoveStart, onMoveOk, onMoveCancel }) {
     const isDragging = useRef(false);
 
