@@ -30,9 +30,14 @@
         border: none;
     }
 
-    .no_authority_reset:active {
+    .button-no_authority_reset-noloading:active {
         // background-color: #66AAF9;
         opacity: 0.5;
         transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .no_authority_reset-loading {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 }

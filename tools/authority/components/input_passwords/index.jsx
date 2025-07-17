@@ -6,10 +6,7 @@ import { authority_way } from '../../../../../src/project_config'
 
 let isOK = null
 
-let openInputPass = function () { }
-
-
-export default openInputPass = function (config) {
+const openInputPass = function (config) {
     let root = null;
     if (!document.getElementById(`inputPass-container`)) {
         const div = document.createElement("div");
@@ -32,11 +29,14 @@ export default openInputPass = function (config) {
     })
 };
 
+export default openInputPass;
 
 class InputPass extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            isLoading: false
+        }
     }
 
 
@@ -62,25 +62,27 @@ class InputPass extends React.Component {
             return;
         }
 
-        this.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
-            if (res.code === 1) {
-                localStorage.setItem("token", res.token)
-                isOK = {
-                    userid: backUser ? userid : undefined,
-                    code: 200,
-                    message: res.message
+        this.setState({ isLoading: true }, () => {
+            this.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
+                if (res.code === 1) {
+                    localStorage.setItem("token", res.token)
+                    isOK = {
+                        userid: backUser ? userid : undefined,
+                        code: 200,
+                        message: res.message
+                    }
+                } else {
+                    isOK = {
+                        code: 403,
+                        message: res.message
+                    }
                 }
-            } else {
+            }).catch(error => {
                 isOK = {
-                    code: 403,
-                    message: res.message
+                    code: 404,
+                    message: error
                 }
-            }
-        }).catch(error => {
-            isOK = {
-                code: 404,
-                message: error
-            }
+            })
         })
     }
 
@@ -91,6 +93,7 @@ class InputPass extends React.Component {
         const buttonText = this.props?.config?.buttonText || '#ffffff';
         const inputColor = this.props?.config?.inputColor || '#ffffff';
         const inputBorder = this.props?.config?.inputBorder || '#e5e7eb';
+        const isLoading = this.state.isLoading;
 
         return (
             <div className='input_passwords'>
@@ -109,10 +112,13 @@ class InputPass extends React.Component {
 
                 </div>
 
-                <button className='check'
+                <button
+                    className={`check ${isLoading ? 'button-loading' : 'button-noloading'}`}
                     style={{ backgroundColor: buttonColor, color: buttonText }}
-                    onClick={this.check.bind(this)}>
-                    登录
+                    onClick={this.check.bind(this)}
+                    disabled={isLoading}
+                >
+                    {isLoading ? '登录中...' : '登录'}
                 </button>
 
                 {!hideID && <p className='forgot'>
@@ -122,30 +128,3 @@ class InputPass extends React.Component {
         );
     }
 }
-
-
-// const daaaa = <div className='input_passwords'>
-//     <table style={{ borderCollapse: 'separate', borderSpacing: '7px 14px' }}>
-//         <tbody>
-//             <tr>
-//                 <td>用户名:</td>
-//                 <td>
-//                     <input id='username' type={"text"} />
-//                 </td>
-//             </tr>
-//             <tr>
-//                 <td>密码:</td>
-//                 <td>
-//                     <input id='password' type={"password"} />
-//                 </td>
-//             </tr>
-//         </tbody>
-//     </table>
-//     <button className='check' onClick={this.check.bind(this)}>
-//         登录
-//     </button>
-
-//     <p className='forgot'>
-//         <a href="https://id.leehaipei.com/" target="_blank">创建账户/忘记密码</a>
-//     </p>
-// </div>

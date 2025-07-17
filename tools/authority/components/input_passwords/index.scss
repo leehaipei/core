@@ -59,7 +59,6 @@
         }
     }
 
-
     .check {
         font-size: .99rem;
         position: absolute;
@@ -76,10 +75,15 @@
         border: none;
     }
 
-    .check:active {
+    .button-noloading:active {
         // background-color: #66AAF9;
         opacity: 0.5;
         transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .button-loading {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 
     .forgot {
