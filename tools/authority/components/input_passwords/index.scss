@@ -2,7 +2,6 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    background-color: #fff;
 
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
@@ -56,7 +55,7 @@
         }
 
         .input_passwords_wrapper:focus-within {
-            border-color: #27272A;
+            border-color: #27272A !important;
         }
     }
 

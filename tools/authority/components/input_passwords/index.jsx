@@ -87,29 +87,31 @@ class InputPass extends React.Component {
 
     render() {
         const hideID = this.props?.config?.hideID;
-        const buttonColor = this.props?.config?.buttonColor;
-        const buttonText = this.props?.config?.buttonText;
+        const buttonColor = this.props?.config?.buttonColor || '#006FEE';
+        const buttonText = this.props?.config?.buttonText || '#ffffff';
+        const inputColor = this.props?.config?.inputColor || '#ffffff';
+        const inputBorder = this.props?.config?.inputBorder || '#e5e7eb';
+
         return (
             <div className='input_passwords'>
 
                 <div className='input_passwords_content'>
 
-                    <div className='input_passwords_wrapper'>
+                    <div className='input_passwords_wrapper' style={{ borderColor: inputBorder }}>
                         <label htmlFor="username">用户名</label>
-                        <input id='username' type={"text"} />
+                        <input id='username' style={{ backgroundColor: inputColor }} type={"text"} />
                     </div>
 
-                    <div className='input_passwords_wrapper'>
+                    <div className='input_passwords_wrapper' style={{ borderColor: inputBorder }}>
                         <label htmlFor="password">密码</label>
-                        <input id='password' type={"password"} />
+                        <input id='password' style={{ backgroundColor: inputColor }} type={"password"} />
                     </div>
 
                 </div>
 
-                <button className='check' style={{
-                    backgroundColor: buttonColor || '#006FEE',
-                    color: buttonText || '#fff'
-                }} onClick={this.check.bind(this)}>
+                <button className='check'
+                    style={{ backgroundColor: buttonColor, color: buttonText }}
+                    onClick={this.check.bind(this)}>
                     登录
                 </button>
 

@@ -10,3 +10,5 @@ config:
     hideID | boolean | 登录页是否隐藏登录按钮 | 默认不隐藏
     buttonColor | string | 登录按钮颜色 | 默认 #006FEE 蓝色
     buttonText | string | 登录按钮文字颜色 | 默认 #ffffff 白色
+    inputColor | string | 输入框背景颜色 | 默认 #ffffff 白色；通常应与html、body或登录页背景颜色一致
+    inputBorder | string | 输入框边框颜色 | 默认 #e5e7eb 浅灰色；通常应与html、body或登录页背景颜色协调；登陆框focus-within状态时，边框会被设置为 #27272A 深灰色
