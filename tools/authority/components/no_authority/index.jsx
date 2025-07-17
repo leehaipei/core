@@ -12,15 +12,15 @@ export default class NoAuthority extends React.Component {
     }
 
     render() {
-        const buttonColor = this.props?.config?.buttonColor;
-        const buttonText = this.props?.config?.buttonText;
+        const buttonColor = this.props?.config?.buttonColor || '#006FEE';
+        const buttonText = this.props?.config?.buttonText || '#fff';
         return (
             <div className='no_authority'>
                 <div className='no_authority_info'>{this.props.info}</div>
-                <button className='no_authority_reset' style={{
-                    backgroundColor: buttonColor || '#006FEE',
-                    color: buttonText || '#fff'
-                }} onClick={this.reset}>重置</button>
+                <button
+                    className='no_authority_reset'
+                    style={{ backgroundColor: buttonColor, color: buttonText }}
+                    onClick={this.reset}>重置</button>
             </div>
         );
     }
