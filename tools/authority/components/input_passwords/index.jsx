@@ -87,6 +87,7 @@ class InputPass extends React.Component {
 
     render() {
         const hideID = this.props?.config?.hideID;
+        const buttonColor = this.props?.config?.buttonColor;
         return (
             <div className='input_passwords'>
 
@@ -104,7 +105,7 @@ class InputPass extends React.Component {
 
                 </div>
 
-                <button className='check' onClick={this.check.bind(this)}>
+                <button className='check' style={{ backgroundColor: buttonColor || '#006FEE' }} onClick={this.check.bind(this)}>
                     登录
                 </button>
 
