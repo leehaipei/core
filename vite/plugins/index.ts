@@ -1,6 +1,6 @@
 import type { PluginOption } from "vite";
 
-import getPackageJson from "../../tools/getProjectInfo/index";
+import projectInfo from "../../tools/projectInfo/index";
 
 import checkCore from "./check-core";
 import customLogVersion from "./custom-log-version";
@@ -10,7 +10,7 @@ import customLogEmailTag from "./custom-log-email-tag";
 
 export default function processPlugins({ mode, command }): PluginOption[] {
   
-  const { packageJson, rootPath } = getPackageJson;
+  const { packageJson, rootPath } = projectInfo;
 
   let plugins = [checkCore(packageJson, rootPath)];
 
