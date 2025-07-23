@@ -18,7 +18,7 @@ export default function customLog(): any {
               // type: 'module',
               // 'data-version': '1.0' // 自定义属性
             },
-            // injectTo: 'head-prepend' // 注入到 <head> 顶部
+            injectTo: 'body' // 注入到 <body> 底部
           },
         ],
       };
