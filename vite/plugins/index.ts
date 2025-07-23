@@ -1,7 +1,6 @@
 import type { PluginOption } from "vite";
 
-import appRoot from "app-root-path";
-import fs from "fs-extra";
+import getPackageJson from "../../tools/getProjectInfo/index";
 
 import checkCore from "./check-core";
 import customLogVersion from "./custom-log-version";
@@ -10,10 +9,8 @@ import customCDN from "./custom-cdn";
 import customLogEmailTag from "./custom-log-email-tag";
 
 export default function processPlugins({ mode, command }): PluginOption[] {
-  // 处理package.json
-  const rootPath = appRoot.path;
-  const packageJsonBuffer = fs.readFileSync(rootPath + "/package.json");
-  const packageJson = JSON.parse(packageJsonBuffer);
+  
+  const { packageJson, rootPath } = getPackageJson;
 
   let plugins = [checkCore(packageJson, rootPath)];
 
