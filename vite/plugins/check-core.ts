@@ -30,21 +30,21 @@ export default function checkCorePlugin(packageJson, rootPath): PluginOption {
             shell.cd(rootPath);
             if (remoteSHA === currentSHA) {
               console.log(
-                chalk.green("Core is already the latest, no need to update.")
+                chalk.green("core already at latest")
               );
             } else {
-              chalk.green("Core needs to be updated!");
+              chalk.blue("core update available");
               const checkCoreResult = await initCore();
               console.log(chalk.green(checkCoreResult));
             }
           } else {
+            console.log(chalk.bgRed("Error to fetch Core Git information!"));
             const checkCoreResult = await initCore();
-            console.log(chalk.red("Error to fetch Core Git information!"));
             console.log(chalk.green(checkCoreResult));
           }
         } catch (error) {
+          console.log(chalk.bgRed("Failed to fetch Core Git information!"));
           const checkCoreResult = await initCore();
-          console.log(chalk.red("Failed to fetch Core Git information!"));
           console.log(chalk.green(checkCoreResult));
         }
 
