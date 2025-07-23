@@ -1,18 +1,14 @@
 import type { PluginOption } from "vite";
 import chalk from "chalk";
-import fs from "fs-extra";
 import shell from "shelljs";
-import appRoot from "app-root-path";
 import axios from "axios";
 
 import initCore from "../../../init-core";
 
-const rootPath = appRoot.path;
-const packageJsonBuffer = fs.readFileSync(rootPath + "/package.json");
-const packageJson = JSON.parse(packageJsonBuffer);
-const coreBranch = packageJson.coreGitBranch;
+export default function checkCorePlugin(packageJson, rootPath): PluginOption {
 
-export default function checkCorePlugin(): PluginOption {
+  const coreBranch = packageJson.coreGitBranch;
+
   // 持久化检查状态（模块作用域）
   let checkCompleted = false;
   return {

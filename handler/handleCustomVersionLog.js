@@ -1,14 +1,8 @@
-import fs from 'fs-extra';
 import axios from 'axios';
 import moment from 'moment';
-import appRoot from "app-root-path";
 import momentBeijing from '../tools/momentBeijing/index.js'
 
-const rootPath = appRoot.path;
-const packageJsonBuffer = fs.readFileSync(rootPath + "/package.json");
-const packageJson = JSON.parse(packageJsonBuffer);
-
-export default function handleCustomVersionLog() {
+export default function handleCustomVersionLog(packageJson) {
   return new Promise(async (resolve, reject) => {
     let coreBeijingTime = false;
 

@@ -1,7 +1,6 @@
 import handleWriteBuiltTime from '../../handler/handleWriteBuiltTime'
 
-
-export default function customBuiltTime() {
+export default function customBuiltTime(rootPath) {
 
   let start = 0;
 
@@ -12,7 +11,7 @@ export default function customBuiltTime() {
     },
     async closeBundle() {
       const total = `${(new Date().getTime() - start) / 1000}s`;
-      await handleWriteBuiltTime(total);
+      await handleWriteBuiltTime(total, rootPath);
     },
   };
 }

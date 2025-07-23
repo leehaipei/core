@@ -1,11 +1,5 @@
-import appRoot from "app-root-path";
-import fs from "fs-extra";
+export default function customLogEmailTag(packageJson): any {
 
-const rootPath = appRoot.path;
-const packageJsonBuffer = fs.readFileSync(rootPath + "/package.json");
-const packageJson = JSON.parse(packageJsonBuffer);
-
-export default function customLog(): any {
   return {
     name: "custom-log-email-tag",
     transformIndexHtml() {

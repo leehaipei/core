@@ -1,14 +1,10 @@
 import type { PluginOption } from "vite";
-import appRoot from "app-root-path";
-import fs from "fs-extra";
 import cdn from "vite-plugin-cdn-import";
 
-const rootPath = appRoot.path;
-const packageJsonBuffer = fs.readFileSync(rootPath + "/package.json");
-const packageJson = JSON.parse(packageJsonBuffer);
-const useCDN = packageJson.useCDN;
+export default function customCDN(packageJson): PluginOption {
 
-export default function customCDN(): PluginOption {
+  const useCDN = packageJson.useCDN;
+
   if (!useCDN) return null;
 
   const dependencies = packageJson.dependencies;

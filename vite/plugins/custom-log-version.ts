@@ -1,6 +1,6 @@
 import handleCustomVersionLog from "../../handler/handleCustomVersionLog";
 
-export default function customLogVersion(): any {
+export default function customLogVersion(packageJson): any {
   return {
     name: "custom-log-version",
     async transformIndexHtml() {
@@ -8,7 +8,7 @@ export default function customLogVersion(): any {
         tags: [
           {
             tag: "script",
-            children: await handleCustomVersionLog(),
+            children: await handleCustomVersionLog(packageJson),
             injectTo: "body",
           },
         ],

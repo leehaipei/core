@@ -1,9 +1,6 @@
 import fs from 'fs-extra';
-import appRoot from "app-root-path";
 
-const rootPath = appRoot.path;
-
-export default function handleWriteBuiltTime(buildtime) {
+export default function handleWriteBuiltTime(buildtime, rootPath) {
   return new Promise(async (resolve, reject) => {
     fs.writeFile(rootPath + "/buildtime.json", JSON.stringify({ use: buildtime }, null, "\t"), (err) => {
       if (err) {
