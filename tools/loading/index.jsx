@@ -4,50 +4,32 @@ const loading = (() => {
   let spinnerId = false;
   let spinnerCount = 0;
 
-  return Object.defineProperties({}, {
-    spinnerId: {
-      get() { return spinnerId; },
-      set(value) {
-        console.error('Error: spinnerId is readonly');
-      },
-      enumerable: true,
-      configurable: false
+  return Object.freeze({
+    get spinnerId() {
+      return spinnerId;
     },
-    spinnerCount: {
-      get() { return spinnerCount; },
-      set(value) {
-        console.error('Error: spinnerCount is readonly');
-      },
-      enumerable: true,
-      configurable: false
+    get spinnerCount() {
+      return spinnerCount;
     },
-    open: {
-      value: function () {
-        spinnerCount++;
-        if (spinnerId) return;
-        spinnerId = `spinner-${Math.random().toString(36).substring(2)}`;
-        const spinnerHTML = `<i class="${spinnerStyle["border-primary"]} ${spinnerStyle["spinner-border"]}"></i><i class="${spinnerStyle["border-secondary"]} ${spinnerStyle["spinner-border"]}"></i>`;
-        const spinnerNode = document.createElement("div");
-        spinnerNode.classList.add(spinnerStyle.spinner);
-        spinnerNode.id = spinnerId;
-        spinnerNode.innerHTML = spinnerHTML;
-        document.body.appendChild(spinnerNode);
-      },
-      writable: false,
-      configurable: false
+    open: function () {
+      if (++spinnerCount > 1 && spinnerId) return;
+      spinnerId = `spinner-${Math.random().toString(36).slice(2)}`;
+
+      const spinnerNode = document.createElement("div");
+      spinnerNode.id = spinnerId;
+      spinnerNode.className = spinnerStyle.spinner;
+      spinnerNode.innerHTML = `
+                <i class="${spinnerStyle["border-primary"]} ${spinnerStyle["spinner-border"]}"></i>
+                <i class="${spinnerStyle["border-secondary"]} ${spinnerStyle["spinner-border"]}"></i>
+            `;
+      document.body.appendChild(spinnerNode);
     },
-    close: {
-      value: function () {
-        spinnerCount--;
-        if (spinnerCount > 0) return;
-        const spinner = document.getElementById(spinnerId);
-        if (!spinner) return console.error("未找到spinner");
-        spinnerId = false;
-        spinner.remove();
-      },
-      writable: false,
-      configurable: false
-    }
+    close: function () {
+      if (--spinnerCount > 0) return;
+      const spinner = document.getElementById(spinnerId);
+      spinner?.remove();
+      spinnerId = false;
+    },
   });
 })();
 
