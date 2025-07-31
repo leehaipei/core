@@ -1,61 +1,27 @@
-import './index.css'
+import spinnerStyle from "./index.module.scss";
 
 const loading = {
-    root: null,
-    open: function (container_id) {
+  spinnerId: false,
+  spinnerCount: 0,
+  open: function () {
+    this.spinnerCount++;
+    if (this.spinnerId) return;
+    this.spinnerId = `spinner-${Math.random().toString(36).substring(2)}`;
+    const spinnerHTML = `<i class="${spinnerStyle["border-primary"]} ${spinnerStyle["spinner-border"]}"></i><i class="${spinnerStyle["border-secondary"]} ${spinnerStyle["spinner-border"]}"></i>`;
+    const spinnerNode = document.createElement("div");
+    spinnerNode.classList.add(spinnerStyle.spinner);
+    spinnerNode.id = this.spinnerId;
+    spinnerNode.innerHTML = spinnerHTML;
+    document.body.appendChild(spinnerNode);
+  },
+  close: function () {
+    this.spinnerCount--;
+    if (this.spinnerCount > 0) return;
+    const spinner = document.getElementById(this.spinnerId);
+    if (!spinner) return console.error("未找到spinner");
+    this.spinnerId = false;
+    spinner.remove();
+  },
+};
 
-        let _box, loading_container = document.createElement("div");
-        loading_container.className = "spinner-border";
-
-        if (!container_id) {
-
-            loading_container.id = `loading_container_body`;
-            loading_container.style.position = "fixed";
-            loading_container.style.top = "50%";
-            loading_container.style.left = "50%";
-            loading_container.style.transform = "translate(-50%, -50%)";
-
-        } else {
-            const box = document.getElementById(container_id);
-            if (!box) return console.error(`loading.open方法未找到id为${container_id}的容器`);
-
-            _box = box.getBoundingClientRect()
-
-            loading_container.id = `loading_container_${container_id}`;
-
-            loading_container.style.width = _box.width + "px";
-            loading_container.style.height = _box.height + "px";
-            loading_container.style.top = _box.top + "px";
-            loading_container.style.left = _box.left + "px";
-            loading_container.style.position = "absolute";
-        }
-
-        document.body.appendChild(loading_container);
-
-    },
-    close: function (container_id = "body") {
-
-        const box = document.getElementById(`loading_container_${container_id}`);
-        if (!box) return console.error(`loading.close方法未找到id为${container_id}生成的容器`);
-        const loading_container = document.getElementById(`loading_container_${container_id}`);
-        loading_container.remove();
-    }
-}
-
-export default loading
-
-/*
-
-    使用方法
-
-    1.在需要loading的地方引入loading
-    2.在需要打开loading的地方调用loading.open("容器id")
-    3.在需要关闭loading的地方调用loading.close("容器id")
-    
-    未传入容器id时，loading将会被添加到body中
-
-
-    如需要全局使用loading，可以在src\untils\axios\index.js中的请求响应拦截器中使用
-
-
-*/
+export default loading;
