@@ -7,6 +7,7 @@ import customLogVersion from "./custom-log-version";
 import customBuiltTime from "./custom-built-time";
 import customCDN from "./custom-cdn";
 import customLogEmailTag from "./custom-log-email-tag";
+import customInitLoading from "./custom-init-loading";
 
 export default function processPlugins({ mode, command }): PluginOption[] {
   
@@ -19,6 +20,7 @@ export default function processPlugins({ mode, command }): PluginOption[] {
 
   if (command === "build") {
     plugins = plugins.concat([
+      customInitLoading(),
       customCDN(packageJson),
       customLogEmailTag(packageJson),
       customBuiltTime(rootPath),
