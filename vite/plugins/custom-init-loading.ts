@@ -27,7 +27,7 @@ export default function customLogEmailTag(): any {
           },
           {
             tag: "style",
-            children: '.init-spinner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:inline-flex;flex-direction:column;align-items:center;z-index:8848;width:32px;height:32px}.init-spinner-border{position:absolute;display:inline-block;width:100%;height:100%;border-bottom-color:#939393;border-left-color:#0000;border-right-color:#0000;border-top-color:#0000;border-width:3px;border-radius:3.40282e38px}.init-border-primary{border-style:solid;animation:init-spinner-spin 0.8s infinite}.init-border-secondary{opacity:0.75;border-style:dotted;animation:init-spinner-spin 0.8s linear infinite}@keyframes init-spinner-spin{0%{transform:rotate(0)}100%{transform:rotate(1turn)}}',
+            children: `#init-spinner-${randomId}{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:inline-flex;flex-direction:column;align-items:center;z-index:8848;width:32px;height:32px}#init-spinner-${randomId} .init-spinner-border{position:absolute;display:inline-block;width:100%;height:100%;border-bottom-color:#939393;border-left-color:#0000;border-right-color:#0000;border-top-color:#0000;border-width:3px;border-radius:3.40282e38px}#init-spinner-${randomId} .init-border-primary{border-style:solid;animation:init-spinner-spin-${randomId} 0.8s infinite}#init-spinner-${randomId} .init-border-secondary{opacity:0.75;border-style:dotted;animation:init-spinner-spin-${randomId} 0.8s linear infinite}@keyframes init-spinner-spin-${randomId}{0%{transform:rotate(0)}100%{transform:rotate(1turn)}}`,
             injectTo: 'head',
             attrs: {
               init: `init-css-${randomId}`
