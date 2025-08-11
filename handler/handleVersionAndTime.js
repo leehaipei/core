@@ -96,7 +96,7 @@ export default async function handleVersionAndTime(message) {
                     if (err) {
                         console.log(chalk.red(`release-record.json record error`));
                     } else {
-                        resolve()
+                        resolve(packageJson["version"])
                         console.log(chalk.green(`file record success`));
                     }
                 })
