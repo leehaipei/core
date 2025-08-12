@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.scss'
 
 import { authority_way } from '../../../../../src/project_config'
+import axios from "@/axioscore";
+
 
 let isOK = null
 
@@ -63,7 +65,7 @@ class InputPass extends React.Component {
         }
 
         this.setState({ isLoading: true }, () => {
-            this.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
+            axios.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
                 if (res.code === 1) {
                     localStorage.setItem("token", res.token)
                     isOK = {
