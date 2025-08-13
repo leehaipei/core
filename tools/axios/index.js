@@ -89,7 +89,7 @@ export default {
 /*
     使用方法：
 
-    import axios from "@/axioscore";
+    import axios from "@/axios";
     引用后直接使用axios.get()或axios.post()
 
 */

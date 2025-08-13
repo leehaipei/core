@@ -1,7 +1,7 @@
 import { use_authority, authority_way } from '../../../src/project_config'
 import openInputPass from './components/input_passwords'
 import loading from '@/loading'
-import axios from '@/axioscore'
+import axios from '@/axios'
 
 
 const check_authority = (config) => {

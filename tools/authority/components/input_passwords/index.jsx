@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.scss'
 
 import { authority_way } from '../../../../../src/project_config'
-import axios from "@/axioscore";
+import axios from "@/axios";
 
 
 let isOK = null
