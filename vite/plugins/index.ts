@@ -12,12 +12,17 @@ import customInitLoading from "./custom-init-loading";
 export default function processPlugins({ mode, command }): PluginOption[] {
   const { packageJson, rootPath } = projectInfo;
 
-  let plugins = [checkCore(packageJson, rootPath)] as PluginOption[];
+  let plugins = [] as PluginOption[];
 
   if (command === "serve") {
+    plugins.push(checkCore(packageJson, rootPath));
   }
 
   if (command === "build") {
+    if (process.env.WHO_BUILD !== "github") {
+      plugins.push(checkCore(packageJson, rootPath));
+    }
+
     plugins = plugins.concat([
       customInitLoading(),
       customCDN(packageJson),
