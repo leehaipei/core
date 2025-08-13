@@ -12,7 +12,7 @@ export default defineConfig(async ({ mode, command, isSsrBuild, isPreview }) => 
   return {
     plugins: [
       react(),
-      ...processPlugins({ mode, command })
+      ...processPlugins({ mode, command, isSsrBuild, isPreview })
     ],
     resolve: {
       // 设置路径别名
