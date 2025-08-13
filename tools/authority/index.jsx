@@ -1,10 +1,7 @@
 import { use_authority, authority_way } from '../../../src/project_config'
-import _axios from '@/axios'
 import openInputPass from './components/input_passwords'
 import loading from '@/loading'
-
-
-const post = new _axios().post
+import axios from '@/axioscore'
 
 
 const check_authority = (config) => {
@@ -15,7 +12,7 @@ const check_authority = (config) => {
             const token = localStorage.getItem("token")
             if (token) {
                 loading.open()
-                post(`/api${authority_way.checkToken}`, { "_": token, backUser: config?.backUser })
+                axios.post(`/api${authority_way.checkToken}`, { "_": token, backUser: config?.backUser })
                     .then(res => {
                         loading.close()
                         if (res.code === 1) {
