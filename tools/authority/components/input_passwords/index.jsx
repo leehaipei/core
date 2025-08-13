@@ -96,9 +96,10 @@ class InputPass extends React.Component {
         const inputColor = this.props?.config?.inputColor || '#ffffff';
         const inputBorder = this.props?.config?.inputBorder || '#e5e7eb';
         const isLoading = this.state.isLoading;
+        const backgroundColor = this.props?.config?.backgroundColor;
 
         return (
-            <div className='input_passwords'>
+            <div className='input_passwords' style={{ backgroundColor }}>
 
                 <div className='input_passwords_content'>
 

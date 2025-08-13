@@ -30,19 +30,21 @@ const check_authority = (config) => {
                         } else {
                             resolve({
                                 code: 403,
-                                message: res.message
+                                message: res.message,
+                                config
                             })
                         }
                     }).catch(error => {
                         resolve({
                             code: 404,
-                            message: error
+                            message: error,
+                            config
                         })
                     })
 
             } else {
                 openInputPass(config).then(checkRes => {
-                    resolve(checkRes)
+                    resolve({ ...checkRes, config })
                 })
             }
         } else {
