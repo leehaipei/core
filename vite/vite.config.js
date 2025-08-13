@@ -15,8 +15,12 @@ export default defineConfig(async ({ mode, command, isSsrBuild, isPreview }) => 
       ...processPlugins({ mode, command })
     ],
     resolve: {
+      // 设置路径别名
       alias: {
-        "@": appRoot.path + '/core/tools/', // 设置路径别名
+        "@": appRoot.path + '/core/tools/',
+        "src": appRoot.path + '/src/',
+        "components": appRoot.path + '/src/components/',
+        "core": appRoot.path + '/core/',
       },
     },
     build: {
