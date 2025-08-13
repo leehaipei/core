@@ -10,22 +10,14 @@ import customLogEmailTag from "./custom-log-email-tag";
 import customInitLoading from "./custom-init-loading";
 
 export default function processPlugins({ mode, command }): PluginOption[] {
-
   const { packageJson, rootPath } = projectInfo;
 
-  let plugins = [] as PluginOption[];
+  let plugins = [checkCore(packageJson, rootPath)] as PluginOption[];
 
   if (command === "serve") {
-    plugins.push(checkCore(packageJson, rootPath));
   }
 
   if (command === "build") {
-    console.log('!!!!!!!!!!!!!!!!!',process.env.WHO_BUILD,'!!!!!!!!!!!!!!!!!');
-    
-    if (process.env.WHO_BUILD !== "github") {
-      plugins.push(checkCore(packageJson, rootPath));
-    }
-
     plugins = plugins.concat([
       customInitLoading(),
       customCDN(packageJson),
