@@ -14,7 +14,6 @@ const check_authority = (config) => {
                 loading.open()
                 axios.post(`/api${authority_way.checkToken}`, { backUser: config?.backUser })
                     .then(res => {
-                        loading.close()
                         if (res.code === 1) {
                             let obj = {
                                 code: 200,
@@ -37,6 +36,8 @@ const check_authority = (config) => {
                             message: error,
                             config
                         })
+                    }).finally(() => {
+                        loading.close()
                     })
 
             } else {
