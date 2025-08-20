@@ -12,7 +12,7 @@ const check_authority = (config) => {
             const token = localStorage.getItem("token")
             if (token) {
                 loading.open()
-                axios.post(`/api${authority_way.checkToken}`, { "_": token, backUser: config?.backUser })
+                axios.post(`/api${authority_way.checkToken}`, { backUser: config?.backUser })
                     .then(res => {
                         loading.close()
                         if (res.code === 1) {
