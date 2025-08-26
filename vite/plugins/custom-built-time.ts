@@ -1,6 +1,6 @@
 import handleWriteBuiltTime from '../../handler/handleWriteBuiltTime'
 
-export default function customBuiltTime(rootPath) {
+export default function customBuiltTime(rootPath: string) {
 
   let start = 0;
 

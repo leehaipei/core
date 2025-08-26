@@ -5,7 +5,7 @@ import axios from "axios";
 
 import initCore from "../../../init-core";
 
-export default function checkCorePlugin(packageJson, rootPath): PluginOption {
+export default function checkCorePlugin(packageJson: Record<string, any>, rootPath: string): PluginOption {
 
   const coreBranch = packageJson.coreGitBranch;
 

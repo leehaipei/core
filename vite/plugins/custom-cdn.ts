@@ -1,7 +1,7 @@
 import type { PluginOption } from "vite";
 import cdn from "vite-plugin-cdn-import";
 
-export default function customCDN(packageJson): PluginOption {
+export default function customCDN(packageJson: Record<string, any>): PluginOption {
 
   const useCDN = packageJson.useCDN;
 

@@ -1,4 +1,4 @@
-export default function customPackageJson(packageJson) {
+export default function customPackageJson(packageJson: Record<string, any>) {
   return {
     name: "custom-PackageJson",
     config(config, { command }) {

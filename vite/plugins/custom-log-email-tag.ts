@@ -1,4 +1,4 @@
-export default function customLogEmailTag(packageJson): any {
+export default function customLogEmailTag(packageJson: Record<string, any>): any {
 
   return {
     name: "custom-log-email-tag",
