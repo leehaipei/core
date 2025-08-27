@@ -34,7 +34,30 @@ instance.interceptors.response.use(
       response.status === 200 ||
       response.status === 304
     ) {
-      return Promise.resolve(response.data);
+      const token = localStorage.getItem("token");
+      if (token) {
+        const headers = response.headers;
+        
+        if (headers["leehaipei-clear-token"]) {
+          localStorage.clear();
+          window.location.reload();
+          return Promise.reject(response);
+        }
+
+        if (headers["leehaipei-refresh-token"]) {
+          const tokenKey = headers["refresh-token"];
+          if (tokenKey) {
+            const newToken = headers[tokenKey];
+            if (newToken) {
+              localStorage.setItem("token", newToken);
+            }
+          }
+        }
+
+        return Promise.resolve(response.data);
+      } else {
+        return Promise.resolve(response.data);
+      }
     } else {
       return Promise.reject(response);
     }
