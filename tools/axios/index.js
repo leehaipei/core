@@ -6,10 +6,10 @@ let token = localStorage.getItem("token") || "";
 
 // 创建axios实例，在这里可以设置请求的默认配置
 const instance = axios.create({
-  timeout: 20000, // 设置超时时间10s
+  timeout: 20000, // 设置超时时间
   // baseURL: baseUrl // 根据自己配置的反向代理去设置不同环境的baseUrl
 });
-// 文档中的统一设置post请求头。下面会说到post请求的几种'Content-Type'
+
 // instance.defaults.headers.post['Content-Type'] = 'application/json'
 
 /** 添加请求拦截器 **/
