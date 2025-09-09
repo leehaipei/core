@@ -2,17 +2,28 @@ import { use_authority, authority_way } from '../../../src/project_config'
 import openInputPass from './components/input_passwords'
 import loading from '@/loading'
 import axios from '@/axios'
+import getWebGLInfo from '@/webFingerprint/getWebGLInfo'
+import generateCanvasFingerprint from '@/webFingerprint/generateCanvasFingerprint'
+import generateWebAudioFingerprint from '@/webFingerprint/generateWebAudioFingerprint'
 
 
 const check_authority = (config) => {
 
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         // 配置要求权限
         if (use_authority) {
             const token = localStorage.getItem("token")
             if (token) {
                 loading.open()
-                axios.post(`/api${authority_way.checkToken}`, { backUser: config?.backUser })
+                const webglInfo = await getWebGLInfo();
+                const canvasFingerprint = await generateCanvasFingerprint();
+                const webAudioFingerprint = await generateWebAudioFingerprint();
+                axios.post(`/api${authority_way.checkToken}`, {
+                    backUser: config?.backUser,
+                    w: webglInfo?.renderer,
+                    c: canvasFingerprint,
+                    a: webAudioFingerprint
+                })
                     .then(res => {
                         if (res.code === 1) {
                             let obj = {

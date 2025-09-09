@@ -4,6 +4,9 @@ import './index.scss'
 
 import { authority_way } from '../../../../../src/project_config'
 import axios from "@/axios";
+import getWebGLInfo from '@/webFingerprint/getWebGLInfo'
+import generateCanvasFingerprint from '@/webFingerprint/generateCanvasFingerprint'
+import generateWebAudioFingerprint from '@/webFingerprint/generateWebAudioFingerprint'
 
 
 let isOK = null
@@ -55,7 +58,12 @@ class InputPass extends React.Component {
         if (e.key === "Enter") { this.check() }
     }
 
-    check() {
+    async check() {
+
+        const webglInfo = await getWebGLInfo();
+        const canvasFingerprint = await generateCanvasFingerprint();
+        const webAudioFingerprint = await generateWebAudioFingerprint();
+
         const userid = document.getElementById("username").value
         const userpass = document.getElementById("password").value
         const backUser = this.props?.config?.backUser;
@@ -65,26 +73,33 @@ class InputPass extends React.Component {
         }
 
         this.setState({ isLoading: true }, () => {
-            axios.post(`/api${authority_way.login}`, { userid, userpass }).then(res => {
-                if (res.code === 1) {
-                    localStorage.setItem("token", res.token)
-                    isOK = {
-                        userid: backUser ? userid : undefined,
-                        code: 200,
-                        message: res.message
+            axios.post(`/api${authority_way.login}`,
+                {
+                    userid,
+                    userpass,
+                    w: webglInfo?.renderer,
+                    c: canvasFingerprint,
+                    a: webAudioFingerprint
+                }).then(res => {
+                    if (res.code === 1) {
+                        localStorage.setItem("token", res.token)
+                        isOK = {
+                            userid: backUser ? userid : undefined,
+                            code: 200,
+                            message: res.message
+                        }
+                    } else {
+                        isOK = {
+                            code: 403,
+                            message: res.message
+                        }
                     }
-                } else {
+                }).catch(error => {
                     isOK = {
-                        code: 403,
-                        message: res.message
+                        code: 404,
+                        message: error
                     }
-                }
-            }).catch(error => {
-                isOK = {
-                    code: 404,
-                    message: error
-                }
-            })
+                })
         })
     }
 
