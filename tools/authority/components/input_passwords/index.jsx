@@ -4,9 +4,7 @@ import './index.scss'
 
 import { authority_way } from '../../../../../src/project_config'
 import axios from "@/axios";
-import getWebGLInfo from '@/webFingerprint/getWebGLInfo'
 import generateCanvasFingerprint from '@/webFingerprint/generateCanvasFingerprint'
-import generateWebAudioFingerprint from '@/webFingerprint/generateWebAudioFingerprint'
 
 
 let isOK = null
@@ -60,9 +58,7 @@ class InputPass extends React.Component {
 
     async check() {
 
-        const webglInfo = await getWebGLInfo();
         const canvasFingerprint = await generateCanvasFingerprint();
-        const webAudioFingerprint = await generateWebAudioFingerprint();
 
         const userid = document.getElementById("username").value
         const userpass = document.getElementById("password").value
@@ -77,9 +73,7 @@ class InputPass extends React.Component {
                 {
                     userid,
                     userpass,
-                    w: webglInfo?.renderer,
-                    c: canvasFingerprint,
-                    a: webAudioFingerprint
+                    token: canvasFingerprint
                 }).then(res => {
                     if (res.code === 1) {
                         localStorage.setItem("token", res.token)
