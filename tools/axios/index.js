@@ -2,8 +2,6 @@ import axios from "axios";
 // import cookie from 'react-cookies'
 import setupProxy from "../proxy/setup_proxy.js";
 
-let token = localStorage.getItem("token") || "";
-
 // 创建axios实例，在这里可以设置请求的默认配置
 const instance = axios.create({
   timeout: 20000, // 设置超时时间
@@ -15,6 +13,7 @@ const instance = axios.create({
 /** 添加请求拦截器 **/
 instance.interceptors.request.use(
   (config) => {
+    const token = localStorage.getItem("token") || "";
     if (token) {
       config.headers["token"] = token;
     }
@@ -34,11 +33,11 @@ instance.interceptors.response.use(
       response.status === 200 ||
       response.status === 304
     ) {
+      const token = localStorage.getItem("token") || "";
       if (token) {
         const headers = response.headers;
 
         if (headers["leehaipei-clear-token"]) {
-          token = "";
           localStorage.clear();
           window.location.reload();
           return Promise.reject(response);
@@ -49,7 +48,6 @@ instance.interceptors.response.use(
           if (tokenKey) {
             const newToken = headers[tokenKey];
             if (newToken) {
-              token = newToken;
               localStorage.setItem("token", newToken);
             }
           }
