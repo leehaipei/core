@@ -1,6 +1,6 @@
 import handleExtractModuleScriptSrc from "../../handler/handleExtractModuleScriptSrc";
 
-function generateRandomString(length = 6) {
+function generateRandomString(length = 3) {
   const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   let result = "";
 
@@ -25,23 +25,23 @@ export default function customLogEmailTag(): any {
             attrs: {
               id: randomId
             },
-            children: `<i class="${randomId}-primary ${randomId}-border"></i><i class="${randomId}-secondary ${randomId}-border"></i>`,
+            children: `<i class="${randomId}1 ${randomId}b"></i><i class="${randomId}2 ${randomId}b"></i>`,
             injectTo: 'body'
           },
           {
             tag: "script",
             attrs: {
-              init: `${randomId}-script`
+              init: `${randomId}js`
             },
-            children: `new PerformanceObserver((l)=>{l.getEntries().forEach((e)=>{if(e.name.includes("${indexJsFileSrc}")){document.getElementById("${randomId}").remove();document.querySelector('style[init="${randomId}-css"]').remove();document.querySelector('script[init="${randomId}-script"]').remove()}})}).observe({type:"resource",buffered:true});`,
+            children: `new PerformanceObserver((l)=>{l.getEntries().forEach((e)=>{if(e.name.includes("${indexJsFileSrc}")){document.getElementById("${randomId}").remove();document.querySelector('style[init="${randomId}css"]').remove();document.querySelector('script[init="${randomId}js"]').remove()}})}).observe({type:"resource",buffered:true});`,
             injectTo: "body",
           },
           {
             tag: "style",
-            children: `#${randomId}{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:inline-flex;flex-direction:column;align-items:center;z-index:8848;width:32px;height:32px}#${randomId} .${randomId}-border{position:absolute;display:inline-block;width:100%;height:100%;border-bottom-color:#939393;border-left-color:#0000;border-right-color:#0000;border-top-color:#0000;border-width:3px;border-radius:3.40282e38px}#${randomId} .${randomId}-primary{border-style:solid;animation:${randomId}-spin 0.8s infinite}#${randomId} .${randomId}-secondary{opacity:0.75;border-style:dotted;animation:${randomId}-spin 0.8s linear infinite}@keyframes ${randomId}-spin{0%{transform:rotate(0)}100%{transform:rotate(1turn)}}`,
+            children: `#${randomId}{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:inline-flex;flex-direction:column;align-items:center;z-index:8848;width:32px;height:32px}#${randomId} .${randomId}b{position:absolute;display:inline-block;width:100%;height:100%;border-bottom-color:#939393;border-left-color:#0000;border-right-color:#0000;border-top-color:#0000;border-width:3px;border-radius:3.40282e38px}#${randomId} .${randomId}1{border-style:solid;animation:${randomId}-s 0.8s infinite}#${randomId} .${randomId}2{opacity:0.75;border-style:dotted;animation:${randomId}-s 0.8s linear infinite}@keyframes ${randomId}-s{0%{transform:rotate(0)}100%{transform:rotate(1turn)}}`,
             injectTo: 'head',
             attrs: {
-              init: `${randomId}-css`
+              init: `${randomId}css`
             }
           },
         ],
