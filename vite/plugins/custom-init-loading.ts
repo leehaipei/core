@@ -1,7 +1,7 @@
 import handleExtractModuleScriptSrc from "../../handler/handleExtractModuleScriptSrc";
 
 function generateRandomString(length = 3) {
-  const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const charset = "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz";
   let result = "";
 
   for (let i = 0; i < length; i++) {
