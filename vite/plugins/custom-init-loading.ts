@@ -3,7 +3,7 @@ import handleExtractModuleScriptSrc from "../../handler/handleExtractModuleScrip
 export default function customLogEmailTag(): any {
   return {
     name: "custom-log-email-tag",
-    transformIndexHtml(html) {
+    transformIndexHtml(html: string) {
       const indexJsFileSrc = handleExtractModuleScriptSrc(html);
       const randomId = Math.random().toString(36).slice(2);
       return {
@@ -22,7 +22,7 @@ export default function customLogEmailTag(): any {
             attrs: {
               init: `init-script-${randomId}`
             },
-            children: ` const observer=new PerformanceObserver((list)=>{list.getEntries().forEach((entry)=>{if(entry.name.includes("${indexJsFileSrc}")){document.getElementById("init-spinner-${randomId}")?.remove?.();document.querySelector('style[init="init-css-${randomId}"]')?.remove?.();document.querySelector('script[init="init-script-${randomId}"]')?.remove?.()}})});observer.observe({type:"resource",buffered:true});`,
+            children: `new PerformanceObserver((l)=>{l.getEntries().forEach((e)=>{if(e.name.includes("${indexJsFileSrc}")){document.getElementById("init-spinner-${randomId}")?.remove?.();document.querySelector('style[init="init-css-${randomId}"]')?.remove?.();document.querySelector('script[init="init-script-${randomId}"]')?.remove?.()}})}).observe({type:"resource",buffered:true});`,
             injectTo: "body",
           },
           {
