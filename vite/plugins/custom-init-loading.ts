@@ -31,17 +31,17 @@ export default function customLogEmailTag(): any {
           {
             tag: "script",
             attrs: {
-              init: `${randomId}js`
+              init: randomId
             },
-            children: `new PerformanceObserver((l)=>{l.getEntries().forEach((e)=>{if(e.name.includes("${indexJsFileSrc}")){document.getElementById("${randomId}").remove();document.querySelector('style[init="${randomId}css"]').remove();document.querySelector('script[init="${randomId}js"]').remove()}})}).observe({type:"resource",buffered:true});`,
+            children: `new PerformanceObserver((l)=>{l.getEntries().forEach((e)=>{if(e.name.includes("${indexJsFileSrc}")){document.getElementById("${randomId}").remove();document.querySelector('style[init="${randomId}"]').remove();document.querySelector('script[init="${randomId}"]').remove()}})}).observe({type:"resource",buffered:true});`,
             injectTo: "body",
           },
           {
             tag: "style",
-            children: `#${randomId}{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:inline-flex;flex-direction:column;align-items:center;z-index:8848;width:32px;height:32px}#${randomId} .${randomId}b{position:absolute;display:inline-block;width:100%;height:100%;border-bottom-color:#939393;border-left-color:#0000;border-right-color:#0000;border-top-color:#0000;border-width:3px;border-radius:3.40282e38px}#${randomId} .${randomId}1{border-style:solid;animation:${randomId}-s 0.8s infinite}#${randomId} .${randomId}2{opacity:0.75;border-style:dotted;animation:${randomId}-s 0.8s linear infinite}@keyframes ${randomId}-s{0%{transform:rotate(0)}100%{transform:rotate(1turn)}}`,
+            children: `#${randomId}{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:inline-flex;flex-direction:column;align-items:center;z-index:8848;width:32px;height:32px}#${randomId} .${randomId}b{position:absolute;display:inline-block;width:100%;height:100%;border-bottom-color:#939393;border-left-color:#0000;border-right-color:#0000;border-top-color:#0000;border-width:3px;border-radius:3.40282e38px}#${randomId} .${randomId}1{border-style:solid;animation:${randomId} 0.8s infinite}#${randomId} .${randomId}2{opacity:0.75;border-style:dotted;animation:${randomId} 0.8s linear infinite}@keyframes ${randomId}{0%{transform:rotate(0)}100%{transform:rotate(1turn)}}`,
             injectTo: 'head',
             attrs: {
-              init: `${randomId}css`
+              init: randomId
             }
           },
         ],
