@@ -8,6 +8,7 @@ export default function customCDN(packageJson: Record<string, any>): PluginOptio
   if (!useCDN) return null;
 
   const dependencies = packageJson.dependencies;
+  const excludeCDNList = packageJson.excludeCDNList || [];
 
   interface Module {
     name: string;
@@ -41,7 +42,7 @@ export default function customCDN(packageJson: Record<string, any>): PluginOptio
   };
 
   for (const key in dependencies) {
-    if (cdnMap?.[key]) {
+    if (cdnMap?.[key] && !excludeCDNList.includes(key)) {
       modules.push(cdnMap[key]);
     }
   }
