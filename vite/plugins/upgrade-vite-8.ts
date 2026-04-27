@@ -10,8 +10,7 @@ export default function upgradeVite8(packageJson: Record<string, any>, rootPath:
 
       const viteVersion = packageJson.devDependencies.vite;
 
-      // const isGte8 = isVersionGte8(viteVersion);
-      const isGte8 = false;
+      const isGte8 = isVersionGte8(viteVersion);
 
       if (!isGte8) {
 
@@ -43,14 +42,47 @@ export default function upgradeVite8(packageJson: Record<string, any>, rootPath:
           const packageJsonPath = rootPath + "/package.json";
           const packageJsonContent = JSON.stringify(packageJson, null, "\t");
 
+          const packageJsonUpdated = await updateFiles(packageJsonPath, packageJsonContent);
+
+          if (packageJsonUpdated) {
+            console.log(chalk.green("package.json 文件更新完成！"));
+          }
+
 
           // 2.增加.npmrc文件
           const npmrcContent = `engine-strict=true`;
           const npmrcPath = rootPath + "/.npmrc";
 
+          const npmrcUpdated = await updateFiles(npmrcPath, npmrcContent);
+
+          if (npmrcUpdated) {
+            console.log(chalk.green(".npmrc 文件创建完成！"));
+          }
+
           // 3.增加.nvmrc文件
           const nvmrcContent = "22.15.0";
           const nvmrcPath = rootPath + "/.nvmrc";
+          const nvmrcUpdated = await updateFiles(nvmrcPath, nvmrcContent);
+
+          if (nvmrcUpdated) {
+            console.log(chalk.green(".nvmrc 文件创建完成！"));
+          }
+
+          // 5.更新.vscode\settings.json文件
+          const vscodeSettingsPath = rootPath + "/.vscode/settings.json";
+          const vscodeSettings = {
+            "explorer.fileNesting.enabled": true,
+            "explorer.fileNesting.patterns": {
+              "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, .nvmrc, .npmrc, .gitignore, postcss.config.js, tailwind.config.js, logo.psd, buildtime.json, release-record.json, tsconfig.json"
+            }
+          }
+          const vscodeSettingsContent = JSON.stringify(vscodeSettings, null, "\t");
+
+          const vscodeSettingsUpdated = await updateFiles(vscodeSettingsPath, vscodeSettingsContent);
+
+          if (vscodeSettingsUpdated) {
+            console.log(chalk.green(".vscode/settings.json 文件更新完成！"));
+          }
 
           // 4.更新tsconfig.json文件
           const tsconfigPath = rootPath + "/tsconfig.json";
@@ -88,19 +120,10 @@ export default function upgradeVite8(packageJson: Record<string, any>, rootPath:
             "exclude": ["node_modules", "core"]
           }
           const tsconfigContent = JSON.stringify(tsconfig, null, "\t");
-
-          // 5.更新.vscode\settings.json文件
-          const vscodeSettingsPath = rootPath + "/.vscode/settings.json";
-          const vscodeSettings = {
-            "explorer.fileNesting.enabled": true,
-            "explorer.fileNesting.patterns": {
-              "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, .nvmrc, .npmrc, .gitignore, postcss.config.js, tailwind.config.js, logo.psd, buildtime.json, release-record.json, tsconfig.json"
-            }
+          const tsconfigUpdated = await updateFiles(tsconfigPath, tsconfigContent);
+          if (tsconfigUpdated) {
+            console.log(chalk.green("tsconfig.json 文件更新完成！"));
           }
-          const vscodeSettingsContent = JSON.stringify(vscodeSettings, null, "\t");
-
-
-
 
 
 
@@ -125,7 +148,7 @@ export default function upgradeVite8(packageJson: Record<string, any>, rootPath:
 
 function updateFiles(path: string, content: string): Promise<boolean> {
   return new Promise<boolean>((resolve, reject) => {
-    fs.writeFile(path, JSON.stringify(content, null, "\t"), (err: any) => {
+    fs.writeFile(path, content, (err: any) => {
       if (err) {
         console.log(err);
         reject(false);
