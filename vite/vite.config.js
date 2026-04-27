@@ -1,5 +1,10 @@
 import { defineConfig } from "vite";
+/**
+ * vite 8 更换新的插件 @vitejs/plugin-react-swc 为 @vitejs/plugin-react，提供更快的构建速度和更好的性能。
+ * 可使用版本 ^6.0.1
+ */
 import react from "@vitejs/plugin-react";
+
 import appRoot from "app-root-path";
 
 
