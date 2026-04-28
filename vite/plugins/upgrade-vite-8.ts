@@ -36,7 +36,7 @@ export default function upgradeVite8(packageJson: Record<string, any>, rootPath:
 
           // engines
           packageJson.engines = {
-            "node": ">=18"
+            "node": ">=22.12.0"
           };
 
           const packageJsonPath = rootPath + "/package.json";
@@ -83,6 +83,16 @@ export default function upgradeVite8(packageJson: Record<string, any>, rootPath:
           if (vscodeSettingsUpdated) {
             console.log(chalk.green(".vscode/settings.json 文件更新完成！"));
           }
+
+          // 6.更新.github\workflows\main.yml文件
+          const githubWorkflowPath = rootPath + "/.github/workflows/main.yml";
+          let githubWorkflowContent = await fs.readFile(githubWorkflowPath, "utf-8");
+          githubWorkflowContent = githubWorkflowContent.replace(/18.X/g, "22.X");
+          const githubWorkflowUpdated = await updateFiles(githubWorkflowPath, githubWorkflowContent);
+          if (githubWorkflowUpdated) {
+            console.log(chalk.green("github/workflows/main.yml 文件更新完成！"));
+          }
+
 
           // 4.更新tsconfig.json文件
           const tsconfigPath = rootPath + "/tsconfig.json";
