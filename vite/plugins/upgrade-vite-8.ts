@@ -120,13 +120,7 @@ export default function upgradeVite8(packageJson: Record<string, any>, rootPath:
                 "core/*": ["./core/*"]
               }
             },
-            "include": [
-              "src/**/*.ts",
-              "src/**/*.d.ts",
-              "src/**/*.tsx",
-              "src/**/*.js",
-              "src/**/*.jsx"
-            ],
+            "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
             "exclude": ["node_modules", "core"]
           }
           const tsconfigContent = JSON.stringify(tsconfig, null, "\t");
