@@ -17,6 +17,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers["token"] = token;
     }
+    config._startTime = performance.now()
     return Promise.resolve(config);
   },
   (error) => {
@@ -34,6 +35,17 @@ instance.interceptors.response.use(
       response.status === 304
     ) {
       const token = localStorage.getItem("token") || "";
+      const data = response.data;
+
+      const duration = (performance.now() - response.config._startTime).toFixed(0);
+
+      Object.defineProperty(data, "$duration", {
+        value: Number(duration),
+        writable: false,    // 只读
+        enumerable: false,  // 不可枚举
+        configurable: false// 不可删除、不可重配置
+      })
+
       if (token) {
         const headers = response.headers;
 
@@ -53,9 +65,9 @@ instance.interceptors.response.use(
           }
         }
 
-        return Promise.resolve(response.data);
+        return Promise.resolve(data);
       } else {
-        return Promise.resolve(response.data);
+        return Promise.resolve(data);
       }
     } else {
       return Promise.reject(response);
