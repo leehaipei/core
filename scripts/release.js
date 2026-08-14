@@ -6,15 +6,16 @@ import handleReleaseMerge from '../handler/handleReleaseMerge.js';
 
 async function main() {
   let message = "";
-  const { result, lastReleaseMessage } = await handleIsUseLastReleaseMessage();
+  const { isUseLastReleaseMessage, lastReleaseMessage, lastReleaseMessageAddTag } = await handleIsUseLastReleaseMessage();
 
-  if (result) {
-    message = lastReleaseMessage
+  if (isUseLastReleaseMessage) {
+    message = lastReleaseMessageAddTag
+    await handleVersionAndTime(lastReleaseMessage);
   } else {
     message = await handleReleaseMessage();
+    await handleVersionAndTime(message);
   }
 
-  await handleVersionAndTime(message);
   await handleReleaseGit(message);
   await handleReleaseMerge();
 
