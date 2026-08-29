@@ -19,23 +19,25 @@ export default async function handleVersionAndTime(message) {
     console.log(chalk.bold.bgBlueBright(`current version: ${currentVision}`));
     const currentVisionArry = currentVision.split('.');
 
+    const willUpdateVision = currentVisionArry.map(item => (Number(item) + 1))
+
     const visionAnswer = await select({
         message: '选择更新版本号',
         choices: [
             {
                 name: '0.0.🙋',
                 value: 2,
-                description: '3.小版本更新',
+                description: `小版本更新 👉️  ${currentVisionArry[0]}.${currentVisionArry[1]}.${willUpdateVision[2]}`,
             },
             {
                 name: '0.🙋.0',
                 value: 1,
-                description: '2.中间版本更新',
+                description: `中间版本更新 👉️  ${currentVisionArry[0]}.${willUpdateVision[1]}.0`,
             },
             {
                 name: '🙋.0.0',
                 value: 0,
-                description: '1.大版本升级',
+                description: `大版本升级 👉️  ${willUpdateVision[0]}.0.0`,
             }
         ],
     });
