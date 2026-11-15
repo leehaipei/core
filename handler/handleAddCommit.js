@@ -11,14 +11,12 @@ export default function handleAddCommit(message) {
     const status = shell.exec('git status', { silent: true }).stdout.trim().toLowerCase();
     const isUpToDate = status.includes('your branch is up to date');
 
-    shell.exec(`git add .`);
-    shell.exec(`git commit --amend --no-edit`);
-
     if (isUpToDate) {
-      shell.exec(`git push --force-with-lease`);
-    } else {
-      await handleReleaseGit(message);
+      shell.exec(`git add .`);
+      shell.exec(`git commit --amend --no-edit`);
     }
+    
+    await handleReleaseGit(message, isUpToDate);
 
     resolve("add commit done");
 
