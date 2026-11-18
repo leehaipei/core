@@ -5,19 +5,15 @@ import { confirm } from '@inquirer/prompts';
 
 const rootPath = appRoot.path;
 
-export default function handleReleaseGit(message, isForce = false) {
+export default function handleReleaseGit(message) {
   return new Promise(async (resolve, reject) => {
     const answer = await confirm({ message: '是否提交并推送代码' });
     if (answer) {
       shell.cd(rootPath);
 
-      if (isForce) {
-        shell.exec(`git push --force-with-lease`);
-      } else {
-        shell.exec(`git add .`);
-        shell.exec(`git commit -m "${message}"`);
-        shell.exec(`git push`);
-      }
+      shell.exec(`git add .`);
+      shell.exec(`git commit -m "${message}"`);
+      shell.exec(`git push`);
 
       console.log(chalk.green("commit & push"));
       resolve("commit & push")
